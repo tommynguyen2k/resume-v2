@@ -9,6 +9,7 @@ import {
   Database,
   Package,
   Sparkles,
+  FolderTree,
   ChevronRight,
 } from "lucide-react";
 
@@ -63,6 +64,18 @@ const topics: TopicItem[] = [
       { title: "Page Transitions", href: "/learn/animations#transitions" },
       { title: "Scroll Effects", href: "/learn/animations#scroll" },
       { title: "Gestures", href: "/learn/animations#gestures" },
+    ],
+  },
+  {
+    title: "Folder Structure",
+    href: "/learn/folder-structure",
+    icon: FolderTree,
+    description: "Next.js organization strategies",
+    examples: [
+      { title: "Colocation", href: "/learn/folder-structure#colocation" },
+      { title: "Feature-based", href: "/learn/folder-structure#feature-based" },
+      { title: "Atomic Design", href: "/learn/folder-structure#atomic" },
+      { title: "Server vs Client", href: "/learn/folder-structure#server-client" },
     ],
   },
 ];
