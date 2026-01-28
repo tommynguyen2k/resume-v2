@@ -1,72 +1,55 @@
-import { Separator } from "@/components/ui/separator";
-import { FadeIn, FadeInOnScroll } from "@/components/motion/fade-in";
-import { CodeBlock } from "@/components/code-block";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Check, X, Zap, Package, Gauge } from "lucide-react";
+import { Separator } from '@/components/ui/separator';
+import { FadeIn, FadeInOnScroll } from '@/components/motion/fade-in';
+import { CodeBlock } from '@/components/code-block';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Badge } from '@/components/ui/badge';
+import { Check, X, Zap, Package, Gauge } from 'lucide-react';
 
 const bundlers = [
   {
-    name: "Vite",
-    description: "Next generation frontend tooling with native ES modules",
+    name: 'Vite',
+    description: 'Next generation frontend tooling with native ES modules',
     icon: Zap,
-    color: "text-purple-500",
+    color: 'text-purple-500',
     pros: [
-      "Instant server start (no bundling in dev)",
-      "Lightning fast HMR",
-      "Native ESM-based development",
-      "Rich plugin ecosystem",
-      "Simple configuration",
+      'Instant server start (no bundling in dev)',
+      'Lightning fast HMR',
+      'Native ESM-based development',
+      'Rich plugin ecosystem',
+      'Simple configuration',
     ],
-    cons: [
-      "Production uses Rollup (different from dev)",
-      "Less mature for large enterprise apps",
-    ],
-    bestFor: "Modern web apps, Vue/React/Svelte projects, rapid development",
+    cons: ['Production uses Rollup (different from dev)', 'Less mature for large enterprise apps'],
+    bestFor: 'Modern web apps, Vue/React/Svelte projects, rapid development',
   },
   {
-    name: "Webpack",
-    description: "The most configurable and battle-tested bundler",
+    name: 'Webpack',
+    description: 'The most configurable and battle-tested bundler',
     icon: Package,
-    color: "text-blue-500",
+    color: 'text-blue-500',
     pros: [
-      "Extremely configurable",
-      "Huge ecosystem of loaders/plugins",
-      "Battle-tested in production",
-      "Great for complex requirements",
-      "Federation for micro-frontends",
+      'Extremely configurable',
+      'Huge ecosystem of loaders/plugins',
+      'Battle-tested in production',
+      'Great for complex requirements',
+      'Federation for micro-frontends',
     ],
-    cons: [
-      "Slower dev server startup",
-      "Complex configuration",
-      "Steeper learning curve",
-    ],
-    bestFor: "Enterprise apps, complex build requirements, micro-frontends",
+    cons: ['Slower dev server startup', 'Complex configuration', 'Steeper learning curve'],
+    bestFor: 'Enterprise apps, complex build requirements, micro-frontends',
   },
   {
-    name: "Turbopack",
-    description: "Rust-based successor to Webpack, integrated with Next.js",
+    name: 'Turbopack',
+    description: 'Rust-based successor to Webpack, integrated with Next.js',
     icon: Gauge,
-    color: "text-red-500",
+    color: 'text-red-500',
     pros: [
-      "Written in Rust (extremely fast)",
-      "Native Next.js integration",
-      "Incremental computation",
-      "Compatible with Webpack loaders",
-      "700x faster than Webpack (claimed)",
+      'Written in Rust (extremely fast)',
+      'Native Next.js integration',
+      'Incremental computation',
+      'Compatible with Webpack loaders',
+      '700x faster than Webpack (claimed)',
     ],
-    cons: [
-      "Still in development",
-      "Next.js specific (for now)",
-      "Limited standalone usage",
-    ],
-    bestFor: "Next.js projects, teams wanting maximum performance",
+    cons: ['Still in development', 'Next.js specific (for now)', 'Limited standalone usage'],
+    bestFor: 'Next.js projects, teams wanting maximum performance',
   },
 ];
 
@@ -173,12 +156,10 @@ export default function BundlersPage() {
     <div className="space-y-12">
       <FadeIn>
         <div className="space-y-2">
-          <h1 className="text-3xl font-bold tracking-tight">
-            Bundlers Comparison
-          </h1>
+          <h1 className="text-3xl font-bold tracking-tight">Bundlers Comparison</h1>
           <p className="text-muted-foreground text-lg">
-            Compare modern JavaScript bundlers: Vite, Webpack, and Turbopack.
-            Understand their strengths, trade-offs, and when to use each.
+            Compare modern JavaScript bundlers: Vite, Webpack, and Turbopack. Understand their
+            strengths, trade-offs, and when to use each.
           </p>
         </div>
       </FadeIn>
@@ -201,15 +182,10 @@ export default function BundlersPage() {
                   </CardHeader>
                   <CardContent className="flex-1 space-y-4">
                     <div>
-                      <h4 className="text-sm font-medium mb-2 text-green-600">
-                        Pros
-                      </h4>
+                      <h4 className="text-sm font-medium mb-2 text-green-600">Pros</h4>
                       <ul className="space-y-1">
                         {bundler.pros.map((pro) => (
-                          <li
-                            key={pro}
-                            className="flex items-start gap-2 text-sm"
-                          >
+                          <li key={pro} className="flex items-start gap-2 text-sm">
                             <Check className="h-4 w-4 text-green-500 mt-0.5 shrink-0" />
                             {pro}
                           </li>
@@ -217,15 +193,10 @@ export default function BundlersPage() {
                       </ul>
                     </div>
                     <div>
-                      <h4 className="text-sm font-medium mb-2 text-red-600">
-                        Cons
-                      </h4>
+                      <h4 className="text-sm font-medium mb-2 text-red-600">Cons</h4>
                       <ul className="space-y-1">
                         {bundler.cons.map((con) => (
-                          <li
-                            key={con}
-                            className="flex items-start gap-2 text-sm"
-                          >
+                          <li key={con} className="flex items-start gap-2 text-sm">
                             <X className="h-4 w-4 text-red-500 mt-0.5 shrink-0" />
                             {con}
                           </li>
@@ -251,8 +222,8 @@ export default function BundlersPage() {
         <FadeInOnScroll>
           <h2 className="text-2xl font-bold">Vite Configuration</h2>
           <p className="text-muted-foreground">
-            Vite uses native ES modules in development and Rollup for
-            production builds. Configuration is minimal and intuitive.
+            Vite uses native ES modules in development and Rollup for production builds.
+            Configuration is minimal and intuitive.
           </p>
           <CodeBlock code={viteConfig} lang="typescript" filename="vite.config.ts" />
         </FadeInOnScroll>
@@ -264,14 +235,10 @@ export default function BundlersPage() {
         <FadeInOnScroll>
           <h2 className="text-2xl font-bold">Webpack Configuration</h2>
           <p className="text-muted-foreground">
-            Webpack requires more configuration but offers unmatched
-            flexibility. Loaders and plugins can handle any build requirement.
+            Webpack requires more configuration but offers unmatched flexibility. Loaders and
+            plugins can handle any build requirement.
           </p>
-          <CodeBlock
-            code={webpackConfig}
-            lang="javascript"
-            filename="webpack.config.js"
-          />
+          <CodeBlock code={webpackConfig} lang="javascript" filename="webpack.config.js" />
         </FadeInOnScroll>
       </section>
 
@@ -281,14 +248,10 @@ export default function BundlersPage() {
         <FadeInOnScroll>
           <h2 className="text-2xl font-bold">Turbopack with Next.js</h2>
           <p className="text-muted-foreground">
-            Turbopack is integrated into Next.js and requires minimal
-            configuration. It's compatible with most Webpack loaders.
+            Turbopack is integrated into Next.js and requires minimal configuration. It&apos;s
+            compatible with most Webpack loaders.
           </p>
-          <CodeBlock
-            code={turbopackConfig}
-            lang="typescript"
-            filename="next.config.ts"
-          />
+          <CodeBlock code={turbopackConfig} lang="typescript" filename="next.config.ts" />
         </FadeInOnScroll>
       </section>
     </div>
