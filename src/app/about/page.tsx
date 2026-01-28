@@ -1,57 +1,62 @@
 'use client';
 
+import Link from 'next/link';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
-import { Code2, Briefcase, GraduationCap, Heart, Layers, Zap, Globe, Terminal } from 'lucide-react';
+import { Code2, Briefcase, GraduationCap, Heart, Layers, Zap, Globe, Terminal, Mail, Github } from 'lucide-react';
 import { FadeIn, FadeInOnScroll } from '@/components/motion/fade-in';
 import { StaggerContainer, StaggerItem } from '@/components/motion/stagger-children';
 import Particles from '@/components/Particles';
 
 const skills = {
-  frontend: ['React', 'Next.js', 'TypeScript', 'JavaScript (ES6+)', 'HTML5', 'CSS3'],
-  styling: ['Tailwind CSS', 'CSS Modules', 'SCSS/SASS', 'Styled Components', 'CSS-in-JS'],
-  state: ['Zustand', 'Redux Toolkit', 'React Query', 'Context API', 'Jotai'],
-  tools: ['Git', 'pnpm/npm/yarn', 'Vite', 'Webpack', 'Turbopack', 'ESLint'],
-  testing: ['Jest', 'React Testing Library', 'Cypress', 'Playwright'],
-  other: ['REST APIs', 'GraphQL', 'WebSockets', 'PWA', 'Performance Optimization'],
+  programmingLanguages: ['JavaScript (ES6+)', 'TypeScript'],
+  frameworksAndLibraries: ['React 18+ (Hooks)', 'Next.js (App Router, SSR/SSG)', 'Angular', 'Vue.js'],
+  stateManagement: ['Redux Toolkit', 'Zustand', 'Context API', 'React Query'],
+  markupAndStyling: ['HTML5 (Semantic)', 'CSS3 (Flex/Grid, Animations)', 'Tailwind CSS'],
+  uiLibraries: ['shadcn/ui', 'Radix UI', 'Material UI', 'Ant Design', 'PrimeNG'],
+  versionControlAndTools: ['Git', 'GitHub/GitLab/Bitbucket', 'Vite', 'npm/pnpm/yarn', 'GitHub Actions', 'CI/CD'],
+  testingAndQuality: ['Jest', 'Vitest'],
+  backendIntermediate: ['Express.js', 'Nest.js', 'MongoDB (Mongoose)', 'PostgreSQL (Prisma)'],
+  api: ['RESTful APIs'],
+  languages: ['English (professional working proficiency)'],
 };
 
 const experiences = [
   {
-    role: 'Senior Frontend Developer',
-    company: 'Tech Company',
-    period: '2022 - Present',
+    role: 'Senior Frontend Engineer',
+    company: 'SmartDev LLC',
+    period: '12/2024 - Present',
     description:
-      'Lead frontend development for enterprise applications. Architecting scalable solutions with React, Next.js, and TypeScript.',
+      'Leading frontend delivery across enterprise platforms, from climate finance proposal management to internal finance tools that replace Excel-heavy workflows.',
     highlights: [
-      'Led migration from CRA to Next.js, improving performance by 40%',
-      'Implemented design system used across 5+ products',
-      'Mentored junior developers and conducted code reviews',
+      'Architected multi-step, schema-driven submission workflows using Next.js 15, JSON Forms (custom renderers/UI schema), React Hook Form + Zod, with conditional logic, uploads, and real-time previews',
+      'Optimized form performance and UX, reducing submission errors by ~30% (estimated) through validation and guided flows',
+      'Designed modular architecture and implemented RBAC using Context API + JWT; supported secure on-prem deployment (Nginx reverse proxy, SSL) and Azure integration',
+    ],
+  },
+  {
+    role: 'Frontend Engineer (FE Leader)',
+    company: 'EM AND AI',
+    period: '12/2023 - 12/2024',
+    description:
+      'Built a Virtual Agent product UI (AI-driven customer interaction) with a strong focus on reusable UI patterns, reporting insights, and developer productivity.',
+    highlights: [
+      'Created a draw-flow approach for building scripts to ensure consistency and speed up development',
+      'Designed and implemented custom reporting charts with Chart.js to deliver actionable insights for clients',
+      'Developed a reusable component library across the product to improve consistency and delivery speed',
     ],
   },
   {
     role: 'Frontend Developer',
-    company: 'Startup',
-    period: '2020 - 2022',
+    company: 'RikkeiSoft',
+    period: '03/2021 - 12/2023',
     description:
-      'Built interactive web applications with focus on user experience and performance.',
+      'Delivered features for high-traffic and government-facing web platforms, collaborating closely with designers and cross-region stakeholders.',
     highlights: [
-      'Developed customer-facing dashboard with real-time updates',
-      'Reduced bundle size by 60% through code splitting',
-      'Integrated third-party APIs and payment systems',
-    ],
-  },
-  {
-    role: 'Junior Developer',
-    company: 'Agency',
-    period: '2018 - 2020',
-    description:
-      'Started career building responsive websites and learning modern frontend technologies.',
-    highlights: [
-      'Built 20+ responsive websites for clients',
-      'Learned React and modern JavaScript',
-      'Collaborated with designers to implement pixel-perfect UIs',
+      'Implemented advanced image editing (Canvas cropping, filters, DPI adjustments) to enhance asset download workflows on a stock media platform (123RF)',
+      'Established scalable app structure (routing guards, Axios configuration) and customized Figma-based layouts; integrated Azure AD authentication',
+      'Mentored team members, conducted code reviews, prepared technical docs, and supported cross-team collaboration (VN–SG)',
     ],
   },
 ];
@@ -79,11 +84,27 @@ export default function AboutPage() {
               <Code2 className="h-3 w-3 mr-1" />
               About Me
             </Badge>
-            <h1 className="text-4xl font-bold tracking-tight">Senior Frontend Developer</h1>
+            <h1 className="text-4xl font-bold tracking-tight">Nguyen Thuy Van Truong</h1>
             <p className="text-lg text-muted-foreground max-w-2xl">
-              Passionate about building exceptional user experiences with modern web technologies. I
-              love clean code, great design, and teaching others.
+              Senior Frontend Engineer (Tommy Nguyen) with 5+ years of hands-on experience building
+              scalable, user-centric web applications using React, Next.js, Angular, Vue.js, and
+              TypeScript. I enjoy clean architecture, performance/accessibility work, and mentoring
+              to raise product and team quality.
             </p>
+            <div className="flex flex-wrap gap-2 pt-2">
+              <Badge variant="outline" asChild>
+                <Link href="mailto:truongnguyen1582000@gmail.com" className="gap-2 inline-flex items-center">
+                  <Mail className="h-3.5 w-3.5" />
+                  truongnguyen1582000@gmail.com
+                </Link>
+              </Badge>
+              <Badge variant="outline" asChild>
+                <Link href="https://github.com/tommynguyen2k" target="_blank" rel="noreferrer" className="gap-2 inline-flex items-center">
+                  <Github className="h-3.5 w-3.5" />
+                  github.com/tommynguyen2k
+                </Link>
+              </Badge>
+            </div>
           </div>
         </FadeIn>
 
@@ -98,9 +119,10 @@ export default function AboutPage() {
             </CardHeader>
             <CardContent className="space-y-4">
               <p className="text-muted-foreground">
-                I believe in writing code that is not just functional, but maintainable, testable,
-                and a joy to work with. Great frontend development is about understanding users,
-                mastering fundamentals, and staying curious about new technologies.
+                I care about outcomes and quality: shipping user-friendly features, keeping code
+               bases maintainable, and building reusable foundations (components, patterns, tooling)
+                that help teams move faster with confidence. I’m also committed to clean code
+                practices, accessibility, and mentoring.
               </p>
               <div className="grid sm:grid-cols-3 gap-4 pt-4">
                 <div className="flex items-start gap-3">
@@ -210,20 +232,20 @@ export default function AboutPage() {
           <FadeInOnScroll>
             <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
               <GraduationCap className="h-6 w-6" />
-              Continuous Learning
+              Education
             </h2>
             <Card>
               <CardContent className="pt-6">
-                <p className="text-muted-foreground mb-4">
-                  I&apos;m a firm believer in continuous learning. This portfolio itself is a
-                  learning project where I explore and document new technologies and patterns.
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  <Badge>Frontend Masters</Badge>
-                  <Badge>Egghead.io</Badge>
-                  <Badge>Official Docs</Badge>
-                  <Badge>Open Source</Badge>
-                  <Badge>Tech Blogs</Badge>
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                  <div>
+                    <p className="font-medium">Duy Tan University (Da Nang, Vietnam)</p>
+                    <p className="text-sm text-muted-foreground">Software Engineering</p>
+                  </div>
+                  <Badge variant="outline">08/2018 - 08/2022</Badge>
+                </div>
+                <div className="flex flex-wrap gap-2 mt-4">
+                  <Badge variant="secondary">GPA: 3.4/4</Badge>
+                  <Badge variant="secondary">TOEIC: 750</Badge>
                 </div>
               </CardContent>
             </Card>

@@ -18,15 +18,17 @@ import { StaggerContainer, StaggerItem } from '@/components/motion/stagger-child
 import LightRays from '@/components/LightRays';
 
 const technologies = [
-  { name: 'React 19', category: 'Framework' },
-  { name: 'Next.js 16', category: 'Framework' },
+  { name: 'React 18+', category: 'Framework' },
+  { name: 'Next.js (App Router)', category: 'Framework' },
   { name: 'TypeScript', category: 'Language' },
   { name: 'Tailwind CSS', category: 'Styling' },
-  { name: 'Motion', category: 'Animation' },
+  { name: 'Motion / Framer', category: 'Animation' },
   { name: 'Zustand', category: 'State' },
   { name: 'React Hook Form', category: 'Forms' },
   { name: 'Zod', category: 'Validation' },
   { name: 'shadcn/ui', category: 'Components' },
+  { name: 'Ant Design', category: 'Components' },
+  { name: 'PrimeNG', category: 'Components' },
   { name: 'Vite', category: 'Build' },
   { name: 'Turbopack', category: 'Build' },
   { name: 'pnpm', category: 'Package Manager' },
@@ -37,25 +39,28 @@ const features = [
     icon: FileCode,
     title: 'Forms & Validation',
     description:
-      'React Hook Form with Zod validation patterns, multi-step wizards, and dynamic fields.',
+      'What I’ve built in production: React Hook Form + Zod, multi-step flows, and dynamic, schema-driven forms.',
     href: '/learn/forms',
   },
   {
     icon: Database,
     title: 'State Management',
-    description: 'Compare Zustand, Redux Toolkit, and Context API with practical examples.',
+    description:
+      'What I use day-to-day: Redux Toolkit, Zustand, Context API, and React Query—trade-offs and patterns with examples.',
     href: '/learn/state-management',
   },
   {
     icon: Package,
-    title: 'Bundlers',
-    description: 'Deep dive into Vite, Webpack, and Turbopack configurations and trade-offs.',
+    title: 'Bundlers & Tooling',
+    description:
+      'What I’ve learned and keep refining: Vite/Webpack/Turbopack basics, configs, and practical trade-offs for real projects.',
     href: '/learn/bundlers',
   },
   {
     icon: Sparkles,
     title: 'Animations',
-    description: 'Motion/Framer patterns for transitions, scroll effects, gestures, and layout.',
+    description:
+      'What I’m currently exploring: Motion/Framer patterns for transitions, scroll effects, gestures, and layout polish.',
     href: '/learn/animations',
   },
 ];
@@ -81,17 +86,18 @@ export default function HomePage() {
             <div className="max-w-3xl mx-auto text-center space-y-6">
               <Badge variant="secondary" className="mb-4">
                 <Zap className="h-3 w-3 mr-1" />
-                Senior Frontend Developer
+                Senior Frontend Engineer · 5+ Years
               </Badge>
               <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-                Frontend Skills{' '}
+                Tommy Nguyen&apos;s{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500">
-                  Portfolio
+                  Frontend Portfolio
                 </span>
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
-                Interactive examples and patterns for modern frontend development. Explore code
-                demos for React, Next.js, state management, animations, and more.
+                Results-driven Senior Frontend Engineer with experience across e-commerce, finance,
+                government systems, and AI virtual agents. This site showcases the patterns, tools,
+                and UI work I use daily with React, Next.js, Angular, Vue, and TypeScript.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
                 <Button asChild size="lg">
@@ -148,12 +154,12 @@ export default function HomePage() {
             <div className="text-center mb-12">
               <Badge variant="secondary" className="mb-4">
                 <Layers className="h-3 w-3 mr-1" />
-                Learning Sections
+                Learning Journey
               </Badge>
-              <h2 className="text-3xl font-bold">What You&apos;ll Learn</h2>
+              <h2 className="text-3xl font-bold">What I&apos;ve Learned &amp; What I&apos;m Learning</h2>
               <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-                Each section includes code examples with syntax highlighting, live previews, and
-                explanations of best practices.
+                These sections reflect my real experience (what I’ve applied in production) and the
+                areas I’m actively improving, with code examples, demos, and notes.
               </p>
             </div>
           </FadeInOnScroll>
