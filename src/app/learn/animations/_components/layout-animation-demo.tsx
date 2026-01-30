@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { motion, AnimatePresence } from "motion/react";
-import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Shuffle } from "lucide-react";
+import { motion, AnimatePresence } from 'motion/react';
+import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { Shuffle } from 'lucide-react';
 
 export function LayoutAnimationDemo() {
   const [activeTab, setActiveTab] = useState(0);
   const [items, setItems] = useState([1, 2, 3, 4]);
 
-  const tabs = ["Home", "About", "Work"];
+  const tabs = ['Home', 'About', 'Work'];
 
   const shuffle = () => {
     setItems([...items].sort(() => Math.random() - 0.5));
@@ -31,7 +31,7 @@ export function LayoutAnimationDemo() {
                 <motion.div
                   layoutId="activeTab"
                   className="absolute inset-0 bg-background rounded-md shadow-sm"
-                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 30 }}
                 />
               )}
               <span className="relative z-10">{tab}</span>
@@ -58,7 +58,7 @@ export function LayoutAnimationDemo() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.8 }}
-                transition={{ type: "spring", stiffness: 350, damping: 25 }}
+                transition={{ type: 'spring', stiffness: 350, damping: 25 }}
                 className="p-3 bg-gradient-to-r from-muted to-muted/50 rounded-lg text-sm font-medium"
               >
                 Item {item}

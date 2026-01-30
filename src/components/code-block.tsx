@@ -1,6 +1,6 @@
-import { highlightCode } from "@/lib/shiki";
-import { CopyButton } from "./copy-button";
-import { cn } from "@/lib/utils";
+import { highlightCode } from '@/lib/shiki';
+import { CopyButton } from './copy-button';
+import { cn } from '@/lib/utils';
 
 interface CodeBlockProps {
   code: string;
@@ -20,7 +20,7 @@ export async function CodeBlock({
   const html = await highlightCode(code.trim(), lang);
 
   return (
-    <div className={cn("relative group rounded-lg border overflow-hidden", className)}>
+    <div className={cn('relative group rounded-lg border overflow-hidden', className)}>
       {filename && (
         <div className="flex items-center justify-between bg-muted px-4 py-2 text-sm font-mono border-b">
           <span className="text-muted-foreground">{filename}</span>
@@ -34,8 +34,8 @@ export async function CodeBlock({
       )}
       <div
         className={cn(
-          "overflow-x-auto [&>pre]:p-4 [&>pre]:m-0 text-sm",
-          showLineNumbers && "[&>pre]:pl-12"
+          'overflow-x-auto [&>pre]:p-4 [&>pre]:m-0 text-sm',
+          showLineNumbers && '[&>pre]:pl-12'
         )}
         dangerouslySetInnerHTML={{ __html: html }}
       />

@@ -1,28 +1,28 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { motion, AnimatePresence } from "motion/react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { CheckCircle } from "lucide-react";
+import { useState } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { motion, AnimatePresence } from 'motion/react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { CheckCircle } from 'lucide-react';
 
 const step1Schema = z.object({
-  firstName: z.string().min(2, "First name required"),
-  lastName: z.string().min(2, "Last name required"),
+  firstName: z.string().min(2, 'First name required'),
+  lastName: z.string().min(2, 'Last name required'),
 });
 
 const step2Schema = z.object({
-  email: z.string().email("Valid email required"),
-  phone: z.string().min(10, "Phone number required"),
+  email: z.string().email('Valid email required'),
+  phone: z.string().min(10, 'Phone number required'),
 });
 
 const step3Schema = z.object({
-  company: z.string().min(2, "Company name required"),
-  role: z.string().min(2, "Role required"),
+  company: z.string().min(2, 'Company name required'),
+  role: z.string().min(2, 'Role required'),
 });
 
 type Step1Data = z.infer<typeof step1Schema>;
@@ -30,7 +30,7 @@ type Step2Data = z.infer<typeof step2Schema>;
 type Step3Data = z.infer<typeof step3Schema>;
 type FormData = Step1Data & Step2Data & Step3Data;
 
-const stepTitles = ["Personal", "Contact", "Work"];
+const stepTitles = ['Personal', 'Contact', 'Work'];
 
 function getSchemaForStep(step: number) {
   if (step === 0) return step1Schema;
@@ -60,7 +60,7 @@ export function MultiStepFormDemo() {
     if (step < 2) {
       setStep((s) => s + 1);
     } else {
-      console.log("Final submission:", newData);
+      console.log('Final submission:', newData);
       setCompleted(true);
       setTimeout(() => {
         setCompleted(false);
@@ -89,19 +89,19 @@ export function MultiStepFormDemo() {
           <div
             key={i}
             className={`flex flex-col items-center gap-1 ${
-              i <= step ? "text-primary" : "text-muted-foreground"
+              i <= step ? 'text-primary' : 'text-muted-foreground'
             }`}
           >
             <div
               className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-medium transition-colors ${
                 i < step
-                  ? "bg-primary text-primary-foreground"
+                  ? 'bg-primary text-primary-foreground'
                   : i === step
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted"
+                  ? 'bg-primary text-primary-foreground'
+                  : 'bg-muted'
               }`}
             >
-              {i < step ? "✓" : i + 1}
+              {i < step ? '✓' : i + 1}
             </div>
             <span className="text-xs">{title}</span>
           </div>
@@ -123,20 +123,16 @@ export function MultiStepFormDemo() {
             <>
               <div className="space-y-2">
                 <Label htmlFor="firstName">First Name</Label>
-                <Input id="firstName" {...register("firstName")} />
+                <Input id="firstName" {...register('firstName')} />
                 {errors.firstName && (
-                  <p className="text-sm text-destructive">
-                    {String(errors.firstName.message)}
-                  </p>
+                  <p className="text-sm text-destructive">{String(errors.firstName.message)}</p>
                 )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="lastName">Last Name</Label>
-                <Input id="lastName" {...register("lastName")} />
+                <Input id="lastName" {...register('lastName')} />
                 {errors.lastName && (
-                  <p className="text-sm text-destructive">
-                    {String(errors.lastName.message)}
-                  </p>
+                  <p className="text-sm text-destructive">{String(errors.lastName.message)}</p>
                 )}
               </div>
             </>
@@ -146,20 +142,16 @@ export function MultiStepFormDemo() {
             <>
               <div className="space-y-2">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" {...register("email")} />
+                <Input id="email" type="email" {...register('email')} />
                 {errors.email && (
-                  <p className="text-sm text-destructive">
-                    {String(errors.email.message)}
-                  </p>
+                  <p className="text-sm text-destructive">{String(errors.email.message)}</p>
                 )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" {...register("phone")} />
+                <Input id="phone" {...register('phone')} />
                 {errors.phone && (
-                  <p className="text-sm text-destructive">
-                    {String(errors.phone.message)}
-                  </p>
+                  <p className="text-sm text-destructive">{String(errors.phone.message)}</p>
                 )}
               </div>
             </>
@@ -169,35 +161,26 @@ export function MultiStepFormDemo() {
             <>
               <div className="space-y-2">
                 <Label htmlFor="company">Company</Label>
-                <Input id="company" {...register("company")} />
+                <Input id="company" {...register('company')} />
                 {errors.company && (
-                  <p className="text-sm text-destructive">
-                    {String(errors.company.message)}
-                  </p>
+                  <p className="text-sm text-destructive">{String(errors.company.message)}</p>
                 )}
               </div>
               <div className="space-y-2">
                 <Label htmlFor="role">Role</Label>
-                <Input id="role" {...register("role")} />
+                <Input id="role" {...register('role')} />
                 {errors.role && (
-                  <p className="text-sm text-destructive">
-                    {String(errors.role.message)}
-                  </p>
+                  <p className="text-sm text-destructive">{String(errors.role.message)}</p>
                 )}
               </div>
             </>
           )}
 
           <div className="flex justify-between pt-2">
-            <Button
-              type="button"
-              variant="outline"
-              onClick={prevStep}
-              disabled={step === 0}
-            >
+            <Button type="button" variant="outline" onClick={prevStep} disabled={step === 0}>
               Previous
             </Button>
-            <Button type="submit">{step < 2 ? "Next" : "Submit"}</Button>
+            <Button type="submit">{step < 2 ? 'Next' : 'Submit'}</Button>
           </div>
         </motion.form>
       </AnimatePresence>

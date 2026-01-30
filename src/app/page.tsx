@@ -156,7 +156,9 @@ export default function HomePage() {
                 <Layers className="h-3 w-3 mr-1" />
                 Learning Journey
               </Badge>
-              <h2 className="text-3xl font-bold">What I&apos;ve Learned &amp; What I&apos;m Learning</h2>
+              <h2 className="text-3xl font-bold">
+                What I&apos;ve Learned &amp; What I&apos;m Learning
+              </h2>
               <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
                 These sections reflect my real experience (what I’ve applied in production) and the
                 areas I’m actively improving, with code examples, demos, and notes.

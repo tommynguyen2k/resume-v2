@@ -1,17 +1,13 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { cn } from "@/lib/utils";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import {
-  FileCode,
-  Database,
-  Package,
-  Sparkles,
-  FolderTree,
-  ChevronRight,
-} from "lucide-react";
+import { useState } from 'react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Button } from '@/components/ui/button';
+import { Drawer } from '@/components/motion/drawer';
+import { FileCode, Database, Package, Sparkles, FolderTree, ChevronRight, Menu, X } from 'lucide-react';
 
 interface TopicItem {
   title: string;
@@ -23,59 +19,62 @@ interface TopicItem {
 
 const topics: TopicItem[] = [
   {
-    title: "Forms & Validation",
-    href: "/learn/forms",
+    title: 'Forms & Validation',
+    href: '/learn/forms',
     icon: FileCode,
-    description: "React Hook Form + Zod patterns",
+    description: 'React Hook Form + Zod patterns',
     examples: [
-      { title: "Basic Form", href: "/learn/forms#basic" },
-      { title: "Multi-step Wizard", href: "/learn/forms#multi-step" },
-      { title: "Dynamic Arrays", href: "/learn/forms#dynamic-arrays" },
+      { title: 'Basic Form', href: '/learn/forms#basic' },
+      { title: 'Multi-step Wizard', href: '/learn/forms#multi-step' },
+      { title: 'Dynamic Arrays', href: '/learn/forms#dynamic-arrays' },
     ],
   },
   {
-    title: "State Management",
-    href: "/learn/state-management",
+    title: 'State Management',
+    href: '/learn/state-management',
     icon: Database,
-    description: "Zustand, Redux, Context patterns",
+    description: 'Zustand, Redux, Context patterns',
     examples: [
-      { title: "Zustand Store", href: "/learn/state-management#zustand" },
-      { title: "Redux Toolkit", href: "/learn/state-management#redux" },
-      { title: "Context API", href: "/learn/state-management#context" },
+      { title: 'Zustand Store', href: '/learn/state-management#zustand' },
+      { title: 'Redux Toolkit', href: '/learn/state-management#redux' },
+      { title: 'Context API', href: '/learn/state-management#context' },
     ],
   },
   {
-    title: "Bundlers",
-    href: "/learn/bundlers",
+    title: 'Bundlers',
+    href: '/learn/bundlers',
     icon: Package,
-    description: "Vite vs Webpack vs Turbopack",
+    description: 'Vite vs Webpack vs Turbopack',
     examples: [
-      { title: "Comparison", href: "/learn/bundlers#comparison" },
-      { title: "Vite Config", href: "/learn/bundlers#vite" },
-      { title: "Webpack Config", href: "/learn/bundlers#webpack" },
+      { title: 'Comparison', href: '/learn/bundlers#comparison' },
+      { title: 'Vite Config', href: '/learn/bundlers#vite' },
+      { title: 'Webpack Config', href: '/learn/bundlers#webpack' },
     ],
   },
   {
-    title: "Animations",
-    href: "/learn/animations",
+    title: 'Animations',
+    href: '/learn/animations',
     icon: Sparkles,
-    description: "Motion/Framer patterns",
+    description: 'Motion/Framer patterns',
     examples: [
-      { title: "Page Transitions", href: "/learn/animations#transitions" },
-      { title: "Scroll Effects", href: "/learn/animations#scroll" },
-      { title: "Gestures", href: "/learn/animations#gestures" },
+      { title: 'Page Transitions', href: '/learn/animations#transitions' },
+      { title: 'Scroll Effects', href: '/learn/animations#scroll' },
+      { title: 'Gestures', href: '/learn/animations#gestures' },
     ],
   },
   {
-    title: "Folder Structure",
-    href: "/learn/folder-structure",
+    title: 'Folder Structure',
+    href: '/learn/folder-structure',
     icon: FolderTree,
-    description: "Next.js organization strategies",
+    description: 'Next.js organization strategies',
     examples: [
-      { title: "Colocation", href: "/learn/folder-structure#colocation" },
-      { title: "Feature-based", href: "/learn/folder-structure#feature-based" },
-      { title: "Atomic Design", href: "/learn/folder-structure#atomic" },
-      { title: "Server vs Client", href: "/learn/folder-structure#server-client" },
+      { title: 'Colocation', href: '/learn/folder-structure#colocation' },
+      { title: 'Feature-based', href: '/learn/folder-structure#feature-based' },
+      { title: 'Atomic Design', href: '/learn/folder-structure#atomic' },
+      {
+        title: 'Server vs Client',
+        href: '/learn/folder-structure#server-client',
+      },
     ],
   },
 ];
@@ -88,9 +87,7 @@ export function TopicSidebar() {
       <ScrollArea className="h-full py-6">
         <div className="px-4 mb-4">
           <h2 className="text-lg font-semibold">Topics</h2>
-          <p className="text-sm text-muted-foreground">
-            Explore frontend patterns
-          </p>
+          <p className="text-sm text-muted-foreground">Explore frontend patterns</p>
         </div>
         <nav className="space-y-1 px-2">
           {topics.map((topic) => {
@@ -102,10 +99,10 @@ export function TopicSidebar() {
                 <Link
                   href={topic.href}
                   className={cn(
-                    "flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors",
+                    'flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors',
                     isActive
-                      ? "bg-accent text-accent-foreground"
-                      : "hover:bg-accent/50 text-muted-foreground hover:text-foreground"
+                      ? 'bg-accent text-accent-foreground'
+                      : 'hover:bg-accent/50 text-muted-foreground hover:text-foreground'
                   )}
                 >
                   <Icon className="h-4 w-4" />
@@ -113,10 +110,7 @@ export function TopicSidebar() {
                     <div className="font-medium truncate">{topic.title}</div>
                   </div>
                   <ChevronRight
-                    className={cn(
-                      "h-4 w-4 transition-transform",
-                      isActive && "rotate-90"
-                    )}
+                    className={cn('h-4 w-4 transition-transform', isActive && 'rotate-90')}
                   />
                 </Link>
                 {isActive && topic.examples && (
@@ -141,34 +135,89 @@ export function TopicSidebar() {
   );
 }
 
-// Mobile version
+// Mobile version: collapsible aside (sheet)
 export function TopicMobileNav() {
   const pathname = usePathname();
+  const [open, setOpen] = useState(false);
 
-  return (
-    <div className="md:hidden border-b overflow-x-auto">
-      <nav className="flex gap-1 p-2">
-        {topics.map((topic) => {
-          const Icon = topic.icon;
-          const isActive = pathname.startsWith(topic.href);
+  const navContent = (
+    <nav className="space-y-1 px-2">
+      {topics.map((topic) => {
+        const Icon = topic.icon;
+        const isActive = pathname.startsWith(topic.href);
 
-          return (
+        return (
+          <div key={topic.href}>
             <Link
-              key={topic.href}
               href={topic.href}
+              onClick={() => setOpen(false)}
               className={cn(
-                "flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium whitespace-nowrap transition-colors",
+                'flex items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors',
                 isActive
-                  ? "bg-primary text-primary-foreground"
-                  : "bg-muted text-muted-foreground hover:text-foreground"
+                  ? 'bg-accent text-accent-foreground'
+                  : 'hover:bg-accent/50 text-muted-foreground hover:text-foreground'
               )}
             >
               <Icon className="h-4 w-4" />
-              {topic.title}
+              <div className="flex-1 min-w-0">
+                <div className="font-medium truncate">{topic.title}</div>
+              </div>
+              <ChevronRight
+                className={cn('h-4 w-4 transition-transform', isActive && 'rotate-90')}
+              />
             </Link>
-          );
-        })}
-      </nav>
+            {isActive && topic.examples && (
+              <div className="ml-7 mt-1 space-y-1 border-l pl-3">
+                {topic.examples.map((example) => (
+                  <Link
+                    key={example.href}
+                    href={example.href}
+                    onClick={() => setOpen(false)}
+                    className="block py-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                  >
+                    {example.title}
+                  </Link>
+                ))}
+              </div>
+            )}
+          </div>
+        );
+      })}
+    </nav>
+  );
+
+  return (
+    <div className="md:hidden border-b flex items-center p-2">
+      <Button
+        variant="outline"
+        size="sm"
+        className="gap-2"
+        onClick={() => setOpen(true)}
+      >
+        <Menu className="h-4 w-4" />
+        Topics
+      </Button>
+
+      <Drawer open={open} onOpenChange={setOpen} side="left" className="w-64">
+        <div className="flex items-center justify-between px-4 pt-6 pb-2 border-b">
+          <div>
+            <h2 className="text-lg font-semibold">Topics</h2>
+            <p className="text-sm text-muted-foreground">Explore frontend patterns</p>
+          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="shrink-0"
+            onClick={() => setOpen(false)}
+            aria-label="Close menu"
+          >
+            <X className="h-4 w-4" />
+          </Button>
+        </div>
+        <ScrollArea className="flex-1 py-4">
+          {navContent}
+        </ScrollArea>
+      </Drawer>
     </div>
   );
 }
