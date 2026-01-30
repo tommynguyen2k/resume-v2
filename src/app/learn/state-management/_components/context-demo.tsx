@@ -1,39 +1,34 @@
-"use client";
+'use client';
 
-import {
-  createContext,
-  useContext,
-  useReducer,
-  ReactNode,
-} from "react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Moon, Sun, Type } from "lucide-react";
+import { createContext, useContext, useReducer, ReactNode } from 'react';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { Moon, Sun, Type } from 'lucide-react';
 
 interface ThemeState {
-  theme: "light" | "dark";
-  fontSize: "sm" | "md" | "lg";
+  theme: 'light' | 'dark';
+  fontSize: 'sm' | 'md' | 'lg';
 }
 
 type ThemeAction =
-  | { type: "TOGGLE_THEME" }
-  | { type: "SET_FONT_SIZE"; payload: "sm" | "md" | "lg" };
+  | { type: 'TOGGLE_THEME' }
+  | { type: 'SET_FONT_SIZE'; payload: 'sm' | 'md' | 'lg' };
 
 interface ThemeContextType extends ThemeState {
   toggleTheme: () => void;
-  setFontSize: (size: "sm" | "md" | "lg") => void;
+  setFontSize: (size: 'sm' | 'md' | 'lg') => void;
 }
 
 const ThemeContext = createContext<ThemeContextType | null>(null);
 
 function themeReducer(state: ThemeState, action: ThemeAction): ThemeState {
   switch (action.type) {
-    case "TOGGLE_THEME":
+    case 'TOGGLE_THEME':
       return {
         ...state,
-        theme: state.theme === "light" ? "dark" : "light",
+        theme: state.theme === 'light' ? 'dark' : 'light',
       };
-    case "SET_FONT_SIZE":
+    case 'SET_FONT_SIZE':
       return { ...state, fontSize: action.payload };
     default:
       return state;
@@ -42,13 +37,13 @@ function themeReducer(state: ThemeState, action: ThemeAction): ThemeState {
 
 function ThemeProvider({ children }: { children: ReactNode }) {
   const [state, dispatch] = useReducer(themeReducer, {
-    theme: "light",
-    fontSize: "md",
+    theme: 'light',
+    fontSize: 'md',
   });
 
-  const toggleTheme = () => dispatch({ type: "TOGGLE_THEME" });
-  const setFontSize = (size: "sm" | "md" | "lg") =>
-    dispatch({ type: "SET_FONT_SIZE", payload: size });
+  const toggleTheme = () => dispatch({ type: 'TOGGLE_THEME' });
+  const setFontSize = (size: 'sm' | 'md' | 'lg') =>
+    dispatch({ type: 'SET_FONT_SIZE', payload: size });
 
   return (
     <ThemeContext.Provider value={{ ...state, toggleTheme, setFontSize }}>
@@ -60,7 +55,7 @@ function ThemeProvider({ children }: { children: ReactNode }) {
 function useTheme() {
   const context = useContext(ThemeContext);
   if (!context) {
-    throw new Error("useTheme must be used within a ThemeProvider");
+    throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;
 }
@@ -68,18 +63,14 @@ function useTheme() {
 function ThemeControls() {
   const { theme, fontSize, toggleTheme, setFontSize } = useTheme();
 
-  const fontSizes: ("sm" | "md" | "lg")[] = ["sm", "md", "lg"];
+  const fontSizes: ('sm' | 'md' | 'lg')[] = ['sm', 'md', 'lg'];
 
   return (
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium">Theme</span>
         <Button variant="outline" size="sm" onClick={toggleTheme}>
-          {theme === "light" ? (
-            <Sun className="h-4 w-4 mr-2" />
-          ) : (
-            <Moon className="h-4 w-4 mr-2" />
-          )}
+          {theme === 'light' ? <Sun className="h-4 w-4 mr-2" /> : <Moon className="h-4 w-4 mr-2" />}
           {theme}
         </Button>
       </div>
@@ -90,7 +81,7 @@ function ThemeControls() {
           {fontSizes.map((size) => (
             <Button
               key={size}
-              variant={fontSize === size ? "default" : "outline"}
+              variant={fontSize === size ? 'default' : 'outline'}
               size="sm"
               onClick={() => setFontSize(size)}
             >
@@ -107,15 +98,15 @@ function PreviewBox() {
   const { theme, fontSize } = useTheme();
 
   const sizeClasses = {
-    sm: "text-sm",
-    md: "text-base",
-    lg: "text-lg",
+    sm: 'text-sm',
+    md: 'text-base',
+    lg: 'text-lg',
   };
 
   return (
     <div
       className={`p-4 rounded-lg border ${
-        theme === "dark" ? "bg-zinc-900 text-white" : "bg-white text-zinc-900"
+        theme === 'dark' ? 'bg-zinc-900 text-white' : 'bg-white text-zinc-900'
       }`}
     >
       <p className={sizeClasses[fontSize]}>

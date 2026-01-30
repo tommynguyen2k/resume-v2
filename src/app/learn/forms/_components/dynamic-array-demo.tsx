@@ -1,26 +1,26 @@
-"use client";
+'use client';
 
-import { useForm, useFieldArray } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Plus, Trash2, CheckCircle } from "lucide-react";
-import { useState } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { useForm, useFieldArray } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { Plus, Trash2, CheckCircle } from 'lucide-react';
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 
 const schema = z.object({
-  teamName: z.string().min(2, "Team name required"),
+  teamName: z.string().min(2, 'Team name required'),
   members: z
     .array(
       z.object({
-        name: z.string().min(2, "Name required"),
-        email: z.string().email("Valid email required"),
-        role: z.string().min(2, "Role required"),
+        name: z.string().min(2, 'Name required'),
+        email: z.string().email('Valid email required'),
+        role: z.string().min(2, 'Role required'),
       })
     )
-    .min(1, "At least one member required"),
+    .min(1, 'At least one member required'),
 });
 
 type FormData = z.infer<typeof schema>;
@@ -37,18 +37,18 @@ export function DynamicArrayDemo() {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
-      teamName: "",
-      members: [{ name: "", email: "", role: "" }],
+      teamName: '',
+      members: [{ name: '', email: '', role: '' }],
     },
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "members",
+    name: 'members',
   });
 
   const onSubmit = (data: FormData) => {
-    console.log("Team data:", data);
+    console.log('Team data:', data);
     setSubmitted(true);
     setTimeout(() => {
       setSubmitted(false);
@@ -66,16 +66,11 @@ export function DynamicArrayDemo() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className="w-full max-w-md space-y-6"
-    >
+    <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-md space-y-6">
       <div className="space-y-2">
         <Label htmlFor="teamName">Team Name</Label>
-        <Input id="teamName" placeholder="Engineering Team" {...register("teamName")} />
-        {errors.teamName && (
-          <p className="text-sm text-destructive">{errors.teamName.message}</p>
-        )}
+        <Input id="teamName" placeholder="Engineering Team" {...register('teamName')} />
+        {errors.teamName && <p className="text-sm text-destructive">{errors.teamName.message}</p>}
       </div>
 
       <div className="space-y-4">
@@ -85,7 +80,7 @@ export function DynamicArrayDemo() {
             type="button"
             variant="outline"
             size="sm"
-            onClick={() => append({ name: "", email: "", role: "" })}
+            onClick={() => append({ name: '', email: '', role: '' })}
           >
             <Plus className="h-4 w-4 mr-1" />
             Add
@@ -97,7 +92,7 @@ export function DynamicArrayDemo() {
             <motion.div
               key={field.id}
               initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
+              animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
               className="space-y-2 p-3 border rounded-lg bg-muted/30"
             >
@@ -145,9 +140,7 @@ export function DynamicArrayDemo() {
         </AnimatePresence>
 
         {errors.members?.root && (
-          <p className="text-sm text-destructive">
-            {errors.members.root.message}
-          </p>
+          <p className="text-sm text-destructive">{errors.members.root.message}</p>
         )}
       </div>
 

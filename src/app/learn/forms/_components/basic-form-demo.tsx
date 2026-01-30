@@ -49,7 +49,10 @@ export function BasicFormDemo() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="w-full max-w-sm space-y-4">
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className="w-full max-w-sm space-y-4"
+    >
       <div className="space-y-2">
         <Label htmlFor="name">Name</Label>
         <Input id="name" placeholder="John Doe" {...register("name")} />
