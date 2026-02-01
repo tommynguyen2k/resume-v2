@@ -4,6 +4,7 @@ import { ThemeProvider } from '@/components/theme-provider';
 import { Header } from '@/components/layout/header';
 import './globals.css';
 import { DockUnderPage } from '@/components/DockUnderPage';
+import { Footer } from '@/components/layout/footer';
 
 const geistSans = Geist({
   variable: '--font-geist-sans', // font-sans
@@ -19,6 +20,10 @@ export const metadata: Metadata = {
   title: 'Tommy Nguyen | Senior Frontend Engineer Portfolio',
   description:
     'Portfolio of Tommy Nguyen (Nguyen Thuy Van Truong) - Senior Frontend Engineer with 5+ years of experience. Interactive examples, code demos, and learning resources showcasing work with React, Next.js, Angular, Vue, and TypeScript.',
+  icons: {
+    icon: '/tommyLogo.svg',
+    apple: '/tommyLogo.svg',
+  },
 };
 
 export default function RootLayout({
@@ -38,18 +43,7 @@ export default function RootLayout({
           <div className="relative min-h-screen flex flex-col">
             <Header />
             <main className="flex-1">{children}</main>
-            <footer className="border-t py-6 md:py-8">
-              <div className="container flex flex-col items-center justify-center gap-2 text-center text-sm text-muted-foreground px-4">
-                <p>
-                  Built by Tommy Nguyen with Next.js, shadcn/ui, Motion, and modern web
-                  technologies.
-                </p>
-                <p>
-                  My personal portfolio documenting what I&apos;ve learned and what I&apos;m
-                  currently exploring in frontend development.
-                </p>
-              </div>
-            </footer>
+            <Footer />
           </div>
           <div className=" md:hidden">
             <DockUnderPage />

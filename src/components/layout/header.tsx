@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Code2, BookOpen, User, Sparkles, Download, Home } from 'lucide-react';
+import { Code2, BookOpen, User, Sparkles, Download, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { AnimatedThemeToggler } from '@/components/ui/animated-theme-toggler';
@@ -11,6 +11,7 @@ const navItems = [
   { href: '/', label: 'Home', icon: Sparkles },
   { href: '/learn', label: 'Learn', icon: BookOpen },
   { href: '/about', label: 'About', icon: User },
+  { href: '/contact', label: 'Connect', icon: Mail },
 ];
 
 export function Header() {

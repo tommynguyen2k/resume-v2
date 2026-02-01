@@ -1,1 +1,7 @@
-<svg fill="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1155 1000"><path d="m577.3 0 577.4 1000H0z" fill="#fff"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+  <title>Tommy Nguyen</title>
+  <!-- T: bar + stem -->
+  <path fill="currentColor" d="M20 18h60v8H52v64h-4V26H20v-8z"/>
+  <!-- N: left vertical, diagonal, right vertical -->
+  <path fill="currentColor" d="M62 18v72h8V42l16 48h8V18h-8v48L70 18h-8z"/>
+</svg>

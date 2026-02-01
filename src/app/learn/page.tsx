@@ -1,19 +1,20 @@
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { FileCode, Database, Package, Sparkles, ArrowRight } from 'lucide-react';
+import { FileCode, Database, Package, Sparkles, ArrowRight, FlaskConical, Globe, GitBranch, Braces } from 'lucide-react';
 import { FadeIn } from '@/components/motion/fade-in';
 import { StaggerContainer, StaggerItem } from '@/components/motion/stagger-children';
 
+// Order matches Technical Skills on About: languages → state → forms → tooling → testing → API → Git/CI
 const topics = [
   {
-    title: 'Forms & Validation',
-    href: '/learn/forms',
-    icon: FileCode,
+    title: 'JavaScript & TypeScript',
+    href: '/learn/javascript-typescript',
+    icon: Braces,
     description:
-      'Master React Hook Form with Zod validation. Learn patterns for complex form handling, multi-step wizards, dynamic fields, and async validation.',
-    tags: ['React Hook Form', 'Zod', 'Validation'],
-    examples: 6,
+      'Modern JS (ES6+) and TypeScript examples with best practices—destructuring, optional chaining, async/await, types, generics, and React typing.',
+    tags: ['ES6+', 'TypeScript', 'Strict mode', 'React types'],
+    examples: 16,
   },
   {
     title: 'State Management',
@@ -23,6 +24,15 @@ const topics = [
       'Compare and understand when to use Zustand, Redux Toolkit, or Context API. Learn best practices for global state in React applications.',
     tags: ['Zustand', 'Redux', 'Context'],
     examples: 5,
+  },
+  {
+    title: 'Forms & Validation',
+    href: '/learn/forms',
+    icon: FileCode,
+    description:
+      'Master React Hook Form with Zod validation. Learn patterns for complex form handling, multi-step wizards, dynamic fields, and async validation.',
+    tags: ['React Hook Form', 'Zod', 'Validation'],
+    examples: 6,
   },
   {
     title: 'Bundlers',
@@ -41,6 +51,33 @@ const topics = [
       'Create fluid animations with Motion (Framer Motion). Learn page transitions, scroll effects, gestures, and layout animations.',
     tags: ['Motion', 'Framer', 'Transitions'],
     examples: 8,
+  },
+  {
+    title: 'Testing',
+    href: '/learn/testing',
+    icon: FlaskConical,
+    description:
+      'Unit and component testing with Jest and Vitest. Learn setup, mocking, and React Testing Library patterns.',
+    tags: ['Jest', 'Vitest', 'RTL'],
+    examples: 4,
+  },
+  {
+    title: 'APIs',
+    href: '/learn/apis',
+    icon: Globe,
+    description:
+      'REST vs GraphQL, fetch patterns, and React Query. Consume APIs with proper loading and error handling.',
+    tags: ['REST', 'GraphQL', 'React Query'],
+    examples: 4,
+  },
+  {
+    title: 'Git & CI/CD',
+    href: '/learn/git-cicd',
+    icon: GitBranch,
+    description:
+      'Git workflows and GitHub Actions. Run lint, test, and deploy on every push and pull request.',
+    tags: ['Git', 'GitHub Actions', 'CI/CD'],
+    examples: 3,
   },
 ];
 

@@ -12,6 +12,10 @@ import {
   FileCode,
   Database,
   Package,
+  FlaskConical,
+  Globe,
+  GitBranch,
+  Braces,
 } from 'lucide-react';
 import { FadeIn, FadeInOnScroll } from '@/components/motion/fade-in';
 import { StaggerContainer, StaggerItem } from '@/components/motion/stagger-children';
@@ -34,34 +38,63 @@ const technologies = [
   { name: 'pnpm', category: 'Package Manager' },
 ];
 
+// Order matches Technical Skills on About: languages → state → forms → tooling → testing → API → Git/CI
 const features = [
   {
-    icon: FileCode,
-    title: 'Forms & Validation',
+    icon: Braces,
+    title: 'JavaScript & TypeScript',
     description:
-      'What I’ve built in production: React Hook Form + Zod, multi-step flows, and dynamic, schema-driven forms.',
-    href: '/learn/forms',
+      'ES6+ and TypeScript examples and best practices—destructuring, optional chaining, async/await, types, and React typing.',
+    href: '/learn/javascript-typescript',
   },
   {
     icon: Database,
     title: 'State Management',
     description:
-      'What I use day-to-day: Redux Toolkit, Zustand, Context API, and React Query—trade-offs and patterns with examples.',
+      'Redux Toolkit, Zustand, Context API, and React Query—when to use each and practical examples.',
     href: '/learn/state-management',
+  },
+  {
+    icon: FileCode,
+    title: 'Forms & Validation',
+    description:
+      'React Hook Form + Zod, multi-step flows, and schema-driven forms—patterns I use in production.',
+    href: '/learn/forms',
   },
   {
     icon: Package,
     title: 'Bundlers & Tooling',
     description:
-      'What I’ve learned and keep refining: Vite/Webpack/Turbopack basics, configs, and practical trade-offs for real projects.',
+      'Vite, Webpack, and Turbopack—configs, trade-offs, and how I choose tooling for real projects.',
     href: '/learn/bundlers',
   },
   {
     icon: Sparkles,
     title: 'Animations',
     description:
-      'What I’m currently exploring: Motion/Framer patterns for transitions, scroll effects, gestures, and layout polish.',
+      'Motion/Framer patterns for transitions, scroll effects, gestures, and layout animations.',
     href: '/learn/animations',
+  },
+  {
+    icon: FlaskConical,
+    title: 'Testing',
+    description:
+      'Jest, Vitest, and React Testing Library—setup, mocking, and testing patterns I rely on.',
+    href: '/learn/testing',
+  },
+  {
+    icon: Globe,
+    title: 'APIs',
+    description:
+      'REST vs GraphQL, fetch patterns, React Query, and solid loading/error handling.',
+    href: '/learn/apis',
+  },
+  {
+    icon: GitBranch,
+    title: 'Git & CI/CD',
+    description:
+      'Git workflows and GitHub Actions for lint, test, and deploy on every push.',
+    href: '/learn/git-cicd',
   },
 ];
 
@@ -157,18 +190,18 @@ export default function HomePage() {
                 Learning Journey
               </Badge>
               <h2 className="text-3xl font-bold">
-                What I&apos;ve Learned &amp; What I&apos;m Learning
+                Topics I&apos;ve Shipped &amp; Continue Exploring
               </h2>
               <p className="text-muted-foreground mt-2 max-w-2xl mx-auto">
-                These sections reflect my real experience (what I’ve applied in production) and the
-                areas I’m actively improving, with code examples, demos, and notes.
+                Notes and demos from production work and side learning—JS/TS, forms, state,
+                bundlers, animations, testing, APIs, and CI/CD.
               </p>
             </div>
           </FadeInOnScroll>
 
           <StaggerContainer
-            className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto"
-            staggerDelay={0.1}
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto"
+            staggerDelay={0.08}
           >
             {features.map((feature) => {
               const Icon = feature.icon;
