@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useReducer, ReactNode } from 'react';
+import { createContext, useContext, useReducer, useCallback, ReactNode } from 'react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Moon, Sun, Type } from 'lucide-react';
@@ -41,9 +41,11 @@ function ThemeProvider({ children }: { children: ReactNode }) {
     fontSize: 'md',
   });
 
-  const toggleTheme = () => dispatch({ type: 'TOGGLE_THEME' });
-  const setFontSize = (size: 'sm' | 'md' | 'lg') =>
-    dispatch({ type: 'SET_FONT_SIZE', payload: size });
+  const toggleTheme = useCallback(() => dispatch({ type: 'TOGGLE_THEME' }), []);
+  const setFontSize = useCallback(
+    (size: 'sm' | 'md' | 'lg') => dispatch({ type: 'SET_FONT_SIZE', payload: size }),
+    []
+  );
 
   return (
     <ThemeContext.Provider value={{ ...state, toggleTheme, setFontSize }}>

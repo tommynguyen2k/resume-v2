@@ -12,7 +12,7 @@ export function LayoutAnimationDemo() {
   const tabs = ['Home', 'About', 'Work'];
 
   const shuffle = () => {
-    setItems([...items].sort(() => Math.random() - 0.5));
+    setItems(items.toSorted(() => Math.random() - 0.5));
   };
 
   return (

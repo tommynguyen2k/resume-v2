@@ -1,9 +1,12 @@
-import type { NextConfig } from "next";
+import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
   /* config options here */
   reactCompiler: true,
-  output: "standalone",
+  output: 'standalone',
+  experimental: {
+    optimizePackageImports: ['lucide-react', 'react-icons'],
+  },
 };
 
 export default nextConfig;

@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '@/lib/utils';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 import { Drawer } from '@/components/motion/drawer';
 import {
   FileCode,
@@ -14,7 +15,8 @@ import {
   Package,
   Sparkles,
   ChevronRight,
-  ChevronLeft,
+  ChevronsLeft,
+  ChevronsRight,
   Menu,
   X,
   FlaskConical,
@@ -51,7 +53,10 @@ const topics: TopicItem[] = [
       { title: 'Types & utilities', href: '/learn/javascript-typescript#ts-types' },
       { title: 'Strict & narrowing', href: '/learn/javascript-typescript#ts-strict' },
       { title: 'Generics', href: '/learn/javascript-typescript#ts-generics' },
-      { title: 'Discriminated unions', href: '/learn/javascript-typescript#ts-discriminated-unions' },
+      {
+        title: 'Discriminated unions',
+        href: '/learn/javascript-typescript#ts-discriminated-unions',
+      },
       { title: 'Mapped types & keyof', href: '/learn/javascript-typescript#ts-mapped-keyof' },
       { title: 'Const assertions', href: '/learn/javascript-typescript#ts-const-assertions' },
       { title: 'Typing React', href: '/learn/javascript-typescript#ts-react' },
@@ -184,12 +189,18 @@ export function TopicSidebar({
   return (
     <aside
       className={cn(
-        'shrink-0 border-r hidden md:block fixed top-16 left-0 h-[calc(100vh-4rem)] z-40 bg-background transition-[width] duration-200 ease-in-out flex flex-col',
-        isCollapsed ? SIDEBAR_WIDTH_COLLAPSED : SIDEBAR_WIDTH_EXPANDED
+        'group relative shrink-0 border-r hidden md:block fixed top-16 left-0 h-[calc(100vh-4rem)] z-40 bg-background transition-[width] duration-200 ease-in-out flex flex-col',
+        isCollapsed ? SIDEBAR_WIDTH_COLLAPSED : SIDEBAR_WIDTH_EXPANDED,
+        'hidden md:block' // ensures it's hidden on small screens
       )}
     >
       <ScrollArea className="flex-1 min-h-0 py-6">
-        <div className={cn('px-4 mb-4 overflow-hidden', isCollapsed && 'px-0 flex flex-col items-center')}>
+        <div
+          className={cn(
+            'px-4 mb-4 overflow-hidden',
+            isCollapsed && 'px-0 flex flex-col items-center'
+          )}
+        >
           {!isCollapsed && (
             <>
               <h2 className="text-lg font-semibold">Topics</h2>
@@ -197,7 +208,7 @@ export function TopicSidebar({
             </>
           )}
         </div>
-        <nav className={cn('space-y-1 px-2', isCollapsed && 'px-2')}>
+        <nav className={cn('space-y-1 px-2 pr-3', isCollapsed && 'px-2')}>
           {topics.map((topic) => {
             const Icon = topic.icon;
             const isActive = pathname.startsWith(topic.href);
@@ -215,19 +226,29 @@ export function TopicSidebar({
                       : 'hover:bg-accent/50 text-muted-foreground hover:text-foreground'
                   )}
                 >
-                  <Link
-                    href={topic.href}
-                    title={isCollapsed ? topic.title : undefined}
-                    className={cn(
-                      'flex items-center min-w-0 flex-1 gap-2 rounded-md py-1 -my-1',
-                      isCollapsed ? 'justify-center' : 'gap-3'
-                    )}
-                  >
-                    <Icon className="h-4 w-4 shrink-0" />
-                    {!isCollapsed && (
+                  {isCollapsed ? (
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Link
+                          href={topic.href}
+                          className="flex items-center min-w-0 flex-1 justify-center gap-2 rounded-md py-1 -my-1"
+                        >
+                          <Icon className="h-4 w-4 shrink-0" />
+                        </Link>
+                      </TooltipTrigger>
+                      <TooltipContent side="right" sideOffset={8}>
+                        {topic.title}
+                      </TooltipContent>
+                    </Tooltip>
+                  ) : (
+                    <Link
+                      href={topic.href}
+                      className={cn('flex items-center min-w-0 flex-1 gap-3 rounded-md py-1 -my-1')}
+                    >
+                      <Icon className="h-4 w-4 shrink-0" />
                       <span className="font-medium truncate">{topic.title}</span>
-                    )}
-                  </Link>
+                    </Link>
+                  )}
                   {!isCollapsed && hasExamples && (
                     <Button
                       variant="ghost"
@@ -276,24 +297,15 @@ export function TopicSidebar({
           })}
         </nav>
       </ScrollArea>
-      <div className={cn('shrink-0 border-t p-2 bg-background', isCollapsed && 'flex justify-center')}>
-        <Button
-          variant="ghost"
-          size={isCollapsed ? 'icon' : 'sm'}
-          className="w-full"
-          onClick={handleSidebarToggle}
-          aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-        >
-          {isCollapsed ? (
-            <ChevronRight className="h-4 w-4" />
-          ) : (
-            <>
-              <ChevronLeft className="h-4 w-4 mr-2" />
-              Collapse
-            </>
-          )}
-        </Button>
-      </div>
+      {/* Right-edge strip: hover shows circular << / >> button; click toggles sidebar (catches border clicks) */}
+      <button
+        type="button"
+        className="absolute right-2 bottom-0 -translate-y-1/2 h-9 w-9 rounded-full flex items-center justify-center cursor-pointer bg-foreground text-background shadow-md ring-2 ring-border/50 hover:ring-border focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        onClick={handleSidebarToggle}
+        aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
+      >
+        {isCollapsed ? <ChevronsRight className="h-4 w-4" /> : <ChevronsLeft className="h-4 w-4" />}
+      </button>
     </aside>
   );
 }
@@ -329,7 +341,7 @@ export function TopicMobileNav() {
   };
 
   const navContent = (
-    <nav className="space-y-1 px-2">
+    <nav className="space-y-1 px-2 pr-3">
       {topics.map((topic) => {
         const Icon = topic.icon;
         const isActive = pathname.startsWith(topic.href);
@@ -406,12 +418,7 @@ export function TopicMobileNav() {
 
   return (
     <div className="md:hidden border-b flex items-center p-2">
-      <Button
-        variant="outline"
-        size="sm"
-        className="gap-2"
-        onClick={() => setOpen(true)}
-      >
+      <Button variant="outline" size="sm" className="gap-2" onClick={() => setOpen(true)}>
         <Menu className="h-4 w-4" />
         Topics
       </Button>
@@ -432,9 +439,7 @@ export function TopicMobileNav() {
             <X className="h-4 w-4" />
           </Button>
         </div>
-        <ScrollArea className="flex-1 py-4">
-          {navContent}
-        </ScrollArea>
+        <ScrollArea className="flex-1 py-4">{navContent}</ScrollArea>
       </Drawer>
     </div>
   );

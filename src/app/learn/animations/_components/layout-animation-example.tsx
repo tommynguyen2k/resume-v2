@@ -1,5 +1,5 @@
-import { ExampleCard } from "@/components/example-card";
-import { LayoutAnimationDemo } from "./layout-animation-demo";
+import { ExampleCard } from '@/components/example-card';
+import { LayoutAnimationDemo } from './layout-animation-demo';
 
 const code = `"use client";
 
@@ -68,7 +68,7 @@ export function ReorderableList() {
   const [items, setItems] = useState([1, 2, 3, 4]);
 
   const shuffle = () => {
-    setItems([...items].sort(() => Math.random() - 0.5));
+    setItems(items.toSorted(() => Math.random() - 0.5));
   };
 
   return (
@@ -98,7 +98,7 @@ export function LayoutAnimationExample() {
       code={code}
       lang="tsx"
       filename="layout-animations.tsx"
-      tags={["layout", "layoutId", "AnimatePresence"]}
+      tags={['layout', 'layoutId', 'AnimatePresence']}
       preview={<LayoutAnimationDemo />}
     />
   );
