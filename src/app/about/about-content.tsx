@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
@@ -51,6 +52,8 @@ import { FadeIn, FadeInOnScroll } from '@/components/motion/fade-in';
 import { StaggerContainer, StaggerItem } from '@/components/motion/stagger-children';
 import Particles from '@/components/Particles';
 import Image from 'next/image';
+import { useState } from 'react';
+import { Check, Copy } from 'lucide-react';
 
 const skills = {
   programmingLanguages: ['JavaScript (ES6+)', 'TypeScript'],
@@ -160,6 +163,14 @@ const experiences = [
 ];
 
 export function AboutContent() {
+  const [copied, setCopied] = useState(false);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText('truongnguyen1582000@gmail.com');
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
     <div className="relative min-h-screen">
       <Particles
@@ -204,14 +215,18 @@ export function AboutContent() {
                   work, and mentoring to raise product and team quality.
                 </p>
                 <div className="flex flex-wrap gap-2 pt-2 justify-center md:justify-start">
-                  <Badge variant="outline" asChild>
-                    <Link
-                      href="mailto:truongnguyen1582000@gmail.com"
-                      className="gap-2 inline-flex items-center"
-                    >
+                  <Badge
+                    variant="outline"
+                    className="gap-2 inline-flex items-center cursor-pointer hover:bg-secondary transition-colors"
+                    onClick={copyEmail}
+                  >
+                    {copied ? (
+                      <Check className="h-3.5 w-3.5 text-green-500" />
+                    ) : (
                       <Mail className="h-3.5 w-3.5" />
-                      truongnguyen1582000@gmail.com
-                    </Link>
+                    )}
+                    {copied ? 'Copied!' : 'truongnguyen1582000@gmail.com'}
+                    {!copied && <Copy className="h-3 w-3 ml-1 opacity-50" />}
                   </Badge>
                   <Badge variant="outline" asChild>
                     <Link
@@ -285,10 +300,11 @@ export function AboutContent() {
           <div className="grid sm:grid-cols-2 gap-6">
             {Object.entries(skills).map(([category, items]) => (
               <FadeInOnScroll key={category}>
-                <Card>
+                <Card className="h-full hover:border-primary/50 transition-all duration-300 hover:shadow-md group/skill">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-base capitalize">
+                    <CardTitle className="text-base capitalize flex items-center justify-between">
                       {category.replace(/([A-Z])/g, ' $1').trim()}
+                      <Code2 className="h-4 w-4 opacity-0 group-hover/skill:opacity-100 transition-opacity text-primary" />
                     </CardTitle>
                   </CardHeader>
                   <CardContent>
@@ -299,7 +315,7 @@ export function AboutContent() {
                           <Badge
                             key={skill}
                             variant="secondary"
-                            className="text-xs inline-flex items-center gap-1.5"
+                            className="text-xs inline-flex items-center gap-1.5 hover:bg-primary hover:text-primary-foreground transition-colors duration-200 cursor-default"
                           >
                             <Icon className="h-3 w-3 shrink-0" />
                             {skill}
@@ -325,57 +341,94 @@ export function AboutContent() {
             </h2>
           </FadeInOnScroll>
 
-          <StaggerContainer className="space-y-6" staggerDelay={0.15}>
-            {experiences.map((exp) => (
-              <StaggerItem key={exp.role + exp.company}>
-                <Card>
-                  <CardHeader>
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-                      <div>
-                        <CardTitle className="text-lg">{exp.role}</CardTitle>
-                        <CardDescription className="text-base">{exp.company}</CardDescription>
-                      </div>
-                      <Badge variant="outline">{exp.period}</Badge>
+          <div className="relative space-y-8 before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-border before:to-transparent">
+            <StaggerContainer className="space-y-8" staggerDelay={0.15}>
+              {experiences.map((exp, index) => (
+                <StaggerItem key={exp.role + exp.company} className="relative">
+                  {/* Timeline dot */}
+                  <div className="absolute left-5 md:left-1/2 w-4 h-4 rounded-full bg-background border-2 border-primary -translate-x-1/2 mt-6 z-20" />
+
+                  <div
+                    className={cn(
+                      'flex flex-col md:flex-row items-center',
+                      index % 2 === 0 ? 'md:flex-row-reverse' : ''
+                    )}
+                  >
+                    <div className="w-full md:w-1/2 pr-0 md:pr-12 md:pl-0 pl-12">
+                      <Card className="hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
+                        <CardHeader>
+                          <div className="flex flex-col gap-2">
+                            <div className="flex items-center justify-between gap-2">
+                              <CardTitle className="text-lg text-primary">{exp.role}</CardTitle>
+                              <Badge variant="outline" className="shrink-0">
+                                {exp.period}
+                              </Badge>
+                            </div>
+                            <CardDescription className="text-base font-medium">
+                              {exp.company}
+                            </CardDescription>
+                          </div>
+                        </CardHeader>
+                        <CardContent className="space-y-4">
+                          <p className="text-muted-foreground text-sm leading-relaxed">
+                            {exp.description}
+                          </p>
+                          <ul className="space-y-2">
+                            {exp.highlights.map((highlight) => (
+                              <li key={highlight} className="flex items-start gap-3 text-sm">
+                                <span className="text-primary mt-1.5 shrink-0">
+                                  <Zap className="h-3 w-3 fill-current" />
+                                </span>
+                                <span className="text-muted-foreground">{highlight}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </CardContent>
+                      </Card>
                     </div>
-                  </CardHeader>
-                  <CardContent className="space-y-4">
-                    <p className="text-muted-foreground">{exp.description}</p>
-                    <ul className="space-y-1.5">
-                      {exp.highlights.map((highlight) => (
-                        <li key={highlight} className="flex items-start gap-2 text-sm">
-                          <span className="text-primary mt-1.5">•</span>
-                          {highlight}
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
+                    <div className="hidden md:block w-1/2" />
+                  </div>
+                </StaggerItem>
+              ))}
+            </StaggerContainer>
+          </div>
         </section>
 
         <Separator className="my-12" />
 
         {/* Education */}
-        <section>
+        <section className="relative">
           <FadeInOnScroll>
-            <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
-              <GraduationCap className="h-6 w-6" />
+            <h2 className="text-2xl font-bold mb-8 flex items-center gap-3">
+              <GraduationCap className="h-7 w-7 text-primary" />
               Education
             </h2>
-            <Card>
-              <CardContent className="pt-6">
-                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
-                  <div>
-                    <p className="font-medium">Duy Tan University (Da Nang, Vietnam)</p>
-                    <p className="text-sm text-muted-foreground">Software Engineering</p>
+            <Card className="overflow-hidden border-none bg-gradient-to-br from-primary/5 via-transparent to-transparent shadow-none ring-1 ring-border">
+              <CardContent className="pt-8">
+                <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+                  <div className="space-y-1">
+                    <h3 className="font-bold text-xl">Duy Tan University</h3>
+                    <p className="text-muted-foreground font-medium">
+                      Software Engineering (Da Nang, Vietnam)
+                    </p>
                   </div>
-                  <Badge variant="outline">08/2018 - 08/2022</Badge>
+                  <Badge variant="secondary" className="px-3 py-1 text-sm font-semibold">
+                    08/2018 - 08/2022
+                  </Badge>
                 </div>
-                <div className="flex flex-wrap gap-2 mt-4">
-                  <Badge variant="secondary">GPA: 3.4/4</Badge>
-                  <Badge variant="secondary">TOEIC: 750</Badge>
+                <div className="flex flex-wrap gap-3 mt-6">
+                  <Badge
+                    variant="outline"
+                    className="bg-background/50 backdrop-blur-sm border-primary/20 text-primary px-3 py-1"
+                  >
+                    GPA: 3.4 / 4.0
+                  </Badge>
+                  <Badge
+                    variant="outline"
+                    className="bg-background/50 backdrop-blur-sm border-primary/20 text-primary px-3 py-1"
+                  >
+                    TOEIC: 750
+                  </Badge>
                 </div>
               </CardContent>
             </Card>

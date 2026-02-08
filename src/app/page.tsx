@@ -85,15 +85,13 @@ const features = [
   {
     icon: Globe,
     title: 'APIs',
-    description:
-      'REST vs GraphQL, fetch patterns, React Query, and solid loading/error handling.',
+    description: 'REST vs GraphQL, fetch patterns, React Query, and solid loading/error handling.',
     href: '/learn/apis',
   },
   {
     icon: GitBranch,
     title: 'Git & CI/CD',
-    description:
-      'Git workflows and GitHub Actions for lint, test, and deploy on every push.',
+    description: 'Git workflows and GitHub Actions for lint, test, and deploy on every push.',
     href: '/learn/git-cicd',
   },
 ];
@@ -103,13 +101,13 @@ export default function HomePage() {
     <div className="flex flex-col">
       <LightRays
         raysOrigin="top-center"
-        raysColor="#ff6b35"
-        raysSpeed={0.6}
-        lightSpread={1.1}
-        rayLength={2}
+        raysColor="#a855f7"
+        raysSpeed={0.5}
+        lightSpread={1.2}
+        rayLength={1.8}
         pulsating={true}
-        fadeDistance={1.0}
-        saturation={1.0}
+        fadeDistance={0.8}
+        saturation={1.2}
         className="!fixed inset-0 -z-10"
       />
       {/* Hero Section */}
@@ -207,21 +205,22 @@ export default function HomePage() {
               const Icon = feature.icon;
               return (
                 <StaggerItem key={feature.title}>
-                  <Link href={feature.href} className="block h-full">
-                    <Card className="h-full transition-all hover:shadow-lg hover:border-primary/50 group">
-                      <CardHeader>
-                        <div className="flex items-center gap-3">
-                          <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                            <Icon className="h-5 w-5" />
+                  <Link href={feature.href} className="block h-full group">
+                    <Card className="h-full transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-1 hover:border-primary/50 bg-background/60 backdrop-blur-md border-border/50 relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <CardHeader className="relative">
+                        <div className="flex items-center gap-4">
+                          <div className="p-2.5 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                            <Icon className="h-6 w-6" />
                           </div>
-                          <CardTitle className="flex items-center gap-2">
+                          <CardTitle className="flex items-center gap-2 group-hover:text-primary transition-colors">
                             {feature.title}
-                            <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                            <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                           </CardTitle>
                         </div>
                       </CardHeader>
-                      <CardContent>
-                        <CardDescription className="text-base">
+                      <CardContent className="relative">
+                        <CardDescription className="text-base leading-relaxed">
                           {feature.description}
                         </CardDescription>
                       </CardContent>

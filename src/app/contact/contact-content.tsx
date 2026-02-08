@@ -7,7 +7,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, Send, CheckCircle2, AlertCircle, Briefcase } from 'lucide-react';
+import { Mail, Send, CheckCircle2, AlertCircle, Briefcase, Loader2 } from 'lucide-react';
 import { FadeIn, FadeInOnScroll } from '@/components/motion/fade-in';
 
 type SubmitStatus = 'idle' | 'sending' | 'success' | 'error';
@@ -54,7 +54,12 @@ export function ContactContent() {
   }
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 left-0 w-[400px] h-[400px] bg-purple-500/5 rounded-full blur-[100px]" />
+      </div>
       <div className="container relative z-10 py-12 md:py-20 px-4 md:px-8 max-w-2xl">
         <FadeIn>
           <div className="space-y-4 mb-12">
@@ -158,13 +163,16 @@ export function ContactContent() {
                   type="submit"
                   size="lg"
                   disabled={status === 'sending'}
-                  className="w-full sm:w-auto"
+                  className="w-full sm:w-auto relative overflow-hidden transition-all duration-300"
                 >
                   {status === 'sending' ? (
-                    'Sending...'
+                    <>
+                      <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                      Sending...
+                    </>
                   ) : (
                     <>
-                      <Send className="h-4 w-4 mr-2" />
+                      <Send className="h-4 w-4 mr-2 transition-transform group-hover:translate-x-1" />
                       Send invite / message
                     </>
                   )}

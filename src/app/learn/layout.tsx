@@ -2,6 +2,8 @@
 
 import { useState } from 'react';
 import { TopicSidebar, TopicMobileNav } from '@/components/topic-sidebar';
+import { ReadingProgress } from '@/components/reading-progress';
+import { Breadcrumbs } from '@/components/ui/breadcrumbs';
 import { cn } from '@/lib/utils';
 
 export default function LearnLayout({
@@ -13,6 +15,7 @@ export default function LearnLayout({
 
   return (
     <div className="flex flex-col">
+      <ReadingProgress />
       <TopicSidebar
         collapsed={sidebarCollapsed}
         onCollapsedChange={setSidebarCollapsed}
@@ -25,6 +28,7 @@ export default function LearnLayout({
       >
         <TopicMobileNav />
         <div className="flex-1 container py-6 md:py-8 px-4 md:px-8 max-w-5xl">
+          <Breadcrumbs />
           {children}
         </div>
       </div>

@@ -5,6 +5,7 @@ import { Header } from '@/components/layout/header';
 import './globals.css';
 import { DockUnderPage } from '@/components/DockUnderPage';
 import { Footer } from '@/components/layout/footer';
+import { BackToTop } from '@/components/back-to-top';
 import { personSchema } from '@/lib/schema';
 
 const geistSans = Geist({
@@ -90,6 +91,7 @@ export default function RootLayout({
             <Header />
             <main className="flex-1">{children}</main>
             <Footer />
+            <BackToTop />
           </div>
           <div className=" md:hidden">
             <DockUnderPage />

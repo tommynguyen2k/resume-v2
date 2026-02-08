@@ -2,13 +2,24 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { FileCode, Database, Package, Sparkles, ArrowRight, FlaskConical, Globe, GitBranch, Braces } from 'lucide-react';
+import {
+  FileCode,
+  Database,
+  Package,
+  Sparkles,
+  ArrowRight,
+  FlaskConical,
+  Globe,
+  GitBranch,
+  Braces,
+} from 'lucide-react';
 import { FadeIn } from '@/components/motion/fade-in';
 import { StaggerContainer, StaggerItem } from '@/components/motion/stagger-children';
 
 export const metadata: Metadata = {
   title: 'Learn',
-  description: 'Explore interactive examples and patterns for modern frontend development. Topics include JS/TS, state management, forms, animations, and more.',
+  description:
+    'Explore interactive examples and patterns for modern frontend development. Topics include JS/TS, state management, forms, animations, and more.',
 };
 
 // Order matches Technical Skills on About: languages → state → forms → tooling → testing → API → Git/CI
@@ -106,29 +117,36 @@ export default function LearnPage() {
 
           return (
             <StaggerItem key={topic.href}>
-              <Link href={topic.href} className="block h-full">
-                <Card className="h-full transition-all hover:shadow-lg hover:border-primary/50 group">
-                  <CardHeader>
-                    <div className="flex items-center gap-3">
-                      <div className="p-2 rounded-lg bg-primary/10 text-primary">
-                        <Icon className="h-5 w-5" />
+              <Link href={topic.href} className="block h-full group">
+                <Card className="h-full transition-all duration-300 hover:shadow-xl hover:-translate-y-1 hover:border-primary/50 bg-background/60 backdrop-blur-md border-border/50 relative overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <CardHeader className="relative">
+                    <div className="flex items-center gap-4">
+                      <div className="p-2.5 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300">
+                        <Icon className="h-6 w-6" />
                       </div>
                       <div className="flex-1">
-                        <CardTitle className="flex items-center gap-2">
+                        <CardTitle className="flex items-center gap-2 group-hover:text-primary transition-colors">
                           {topic.title}
-                          <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                          <ArrowRight className="h-4 w-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300" />
                         </CardTitle>
-                        <div className="text-sm text-muted-foreground">
+                        <div className="text-sm text-muted-foreground mt-0.5">
                           {topic.examples} examples
                         </div>
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent className="space-y-4">
-                    <CardDescription className="line-clamp-3">{topic.description}</CardDescription>
+                  <CardContent className="space-y-4 relative">
+                    <CardDescription className="line-clamp-3 text-sm leading-relaxed text-muted-foreground">
+                      {topic.description}
+                    </CardDescription>
                     <div className="flex flex-wrap gap-1.5">
                       {topic.tags.map((tag) => (
-                        <Badge key={tag} variant="secondary" className="text-xs">
+                        <Badge
+                          key={tag}
+                          variant="secondary"
+                          className="text-[10px] font-medium tracking-tight bg-secondary/50 hover:bg-primary/20 hover:text-primary transition-colors"
+                        >
                           {tag}
                         </Badge>
                       ))}

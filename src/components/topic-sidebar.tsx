@@ -300,7 +300,7 @@ export function TopicSidebar({
       {/* Right-edge strip: hover shows circular << / >> button; click toggles sidebar (catches border clicks) */}
       <button
         type="button"
-        className="absolute right-2 bottom-0 -translate-y-1/2 h-9 w-9 rounded-full flex items-center justify-center cursor-pointer bg-foreground text-background shadow-md ring-2 ring-border/50 hover:ring-border focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="absolute -right-4 top-1/2 -translate-y-1/2 h-8 w-8 rounded-full flex items-center justify-center cursor-pointer bg-background border shadow-sm hover:bg-accent hover:text-accent-foreground transition-all z-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         onClick={handleSidebarToggle}
         aria-label={isCollapsed ? 'Expand sidebar' : 'Collapse sidebar'}
       >

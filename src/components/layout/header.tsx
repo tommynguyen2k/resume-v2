@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion } from 'motion/react';
 import { Code2, BookOpen, User, Sparkles, Download, Mail } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
@@ -36,12 +37,19 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary',
+                  'relative flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary py-2',
                   isActive ? 'text-primary' : 'text-muted-foreground'
                 )}
               >
                 <Icon className="h-4 w-4" />
                 {item.label}
+                {isActive && (
+                  <motion.div
+                    layoutId="header-nav-underline"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
               </Link>
             );
           })}
