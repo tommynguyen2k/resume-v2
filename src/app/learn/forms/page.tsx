@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import { Separator } from "@/components/ui/separator";
+
+export const metadata: Metadata = {
+  title: 'Forms & Validation',
+  description: 'Learn React Hook Form with Zod validation. These patterns cover common form scenarios from basic to advanced.',
+};
 import { FadeIn } from "@/components/motion/fade-in";
 import { BasicFormExample } from "./_components/basic-form-example";
 import { MultiStepFormExample } from "./_components/multi-step-form-example";

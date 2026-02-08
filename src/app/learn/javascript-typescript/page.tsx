@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import { Separator } from '@/components/ui/separator';
+
+export const metadata: Metadata = {
+  title: 'JavaScript & TypeScript',
+  description: 'Modern JS (ES6+) and TypeScript examples with best practices—destructuring, spread/rest, optional chaining, async/await, and more.',
+};
 import { FadeIn, FadeInOnScroll } from '@/components/motion/fade-in';
 import { CodeBlock } from '@/components/code-block';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';

@@ -1,9 +1,15 @@
+import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { FileCode, Database, Package, Sparkles, ArrowRight, FlaskConical, Globe, GitBranch, Braces } from 'lucide-react';
 import { FadeIn } from '@/components/motion/fade-in';
 import { StaggerContainer, StaggerItem } from '@/components/motion/stagger-children';
+
+export const metadata: Metadata = {
+  title: 'Learn',
+  description: 'Explore interactive examples and patterns for modern frontend development. Topics include JS/TS, state management, forms, animations, and more.',
+};
 
 // Order matches Technical Skills on About: languages → state → forms → tooling → testing → API → Git/CI
 const topics = [

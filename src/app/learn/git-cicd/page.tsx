@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import { Separator } from '@/components/ui/separator';
+
+export const metadata: Metadata = {
+  title: 'Git & CI/CD',
+  description: 'Git workflows and GitHub Actions for lint, test, and deploy. Keep main green with automated checks on every push and PR.',
+};
 import { FadeIn, FadeInOnScroll } from '@/components/motion/fade-in';
 import { CodeBlock } from '@/components/code-block';
 import { GitBranch, Workflow, CheckCircle } from 'lucide-react';

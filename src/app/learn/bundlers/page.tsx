@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import { Separator } from '@/components/ui/separator';
+
+export const metadata: Metadata = {
+  title: 'Bundlers',
+  description: 'Compare modern JavaScript bundlers: Vite, Webpack, and Turbopack. Understand their strengths, trade-offs, and when to use each.',
+};
 import { FadeIn, FadeInOnScroll } from '@/components/motion/fade-in';
 import { CodeBlock } from '@/components/code-block';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';

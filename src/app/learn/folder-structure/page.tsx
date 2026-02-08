@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import { Separator } from '@/components/ui/separator';
+
+export const metadata: Metadata = {
+  title: 'Folder Structure',
+  description: 'Popular strategies for organizing folders and files in Next.js (App Router) projects, from basic to advanced.',
+};
 import { FadeIn, FadeInOnScroll } from '@/components/motion/fade-in';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';

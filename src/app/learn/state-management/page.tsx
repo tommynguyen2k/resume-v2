@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import { Separator } from "@/components/ui/separator";
+
+export const metadata: Metadata = {
+  title: 'State Management',
+  description: 'Compare different state management approaches in React: Zustand, Redux, or Context API.',
+};
 import { FadeIn } from "@/components/motion/fade-in";
 import { ZustandExample } from "./_components/zustand-example";
 import { ContextExample } from "./_components/context-example";

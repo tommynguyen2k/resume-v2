@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import { Separator } from '@/components/ui/separator';
+
+export const metadata: Metadata = {
+  title: 'APIs',
+  description: 'REST vs GraphQL, fetch patterns, and React Query. Learn how to consume APIs safely with loading and error handling.',
+};
 import { FadeIn, FadeInOnScroll } from '@/components/motion/fade-in';
 import { CodeBlock } from '@/components/code-block';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';

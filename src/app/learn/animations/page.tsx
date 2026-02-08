@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import { Separator } from "@/components/ui/separator";
+
+export const metadata: Metadata = {
+  title: 'Animations',
+  description: 'Create fluid, performant animations with Motion (Framer Motion). Learn patterns for transitions, scroll effects, gestures, and layout animations.',
+};
 import { FadeIn } from "@/components/motion/fade-in";
 import { BasicAnimationExample } from "./_components/basic-animation-example";
 import { ScrollAnimationExample } from "./_components/scroll-animation-example";

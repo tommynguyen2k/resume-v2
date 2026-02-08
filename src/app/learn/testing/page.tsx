@@ -1,4 +1,10 @@
+import type { Metadata } from 'next';
 import { Separator } from '@/components/ui/separator';
+
+export const metadata: Metadata = {
+  title: 'Testing',
+  description: 'Jest and Vitest for unit and component tests. Learn setup, mocking, and best practices for frontend testing.',
+};
 import { FadeIn, FadeInOnScroll } from '@/components/motion/fade-in';
 import { CodeBlock } from '@/components/code-block';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
