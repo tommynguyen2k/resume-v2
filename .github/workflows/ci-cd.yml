@@ -90,6 +90,8 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          build-args: |
+            NEXT_PUBLIC_GA_ID=${{ secrets.NEXT_PUBLIC_GA_ID }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -132,6 +134,7 @@ jobs:
               -e BREVO_SENDER_EMAIL="${{ secrets.BREVO_SENDER_EMAIL }}" \
               -e BREVO_SENDER_NAME="${{ secrets.BREVO_SENDER_NAME }}" \
               -e BREVO_CONTACT_RECIPIENT="${{ secrets.BREVO_CONTACT_RECIPIENT }}" \
+              -e NEXT_PUBLIC_GA_ID="${{ secrets.NEXT_PUBLIC_GA_ID }}" \
               ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
 
             # Cleanup unused images and builders to save space

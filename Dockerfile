@@ -18,6 +18,10 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+# Environment variable for build-time (e.g., Google Analytics ID)
+ARG NEXT_PUBLIC_GA_ID
+ENV NEXT_PUBLIC_GA_ID=$NEXT_PUBLIC_GA_ID
+
 # Set environment variable for build
 ENV NEXT_TELEMETRY_DISABLED=1
 

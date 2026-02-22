@@ -5,8 +5,15 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+      args:
+        - NEXT_PUBLIC_GA_ID=${NEXT_PUBLIC_GA_ID}
     ports:
       - '3000:3000'
     environment:
       - NODE_ENV=production
+      - NEXT_PUBLIC_GA_ID=${NEXT_PUBLIC_GA_ID}
+      - BREVO_API_KEY=${BREVO_API_KEY}
+      - BREVO_SENDER_EMAIL=${BREVO_SENDER_EMAIL}
+      - BREVO_SENDER_NAME=${BREVO_SENDER_NAME}
+      - BREVO_CONTACT_RECIPIENT=${BREVO_CONTACT_RECIPIENT}
     restart: unless-stopped
