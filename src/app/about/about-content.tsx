@@ -16,6 +16,8 @@ import {
   Terminal,
   Mail,
   Github,
+  User,
+  Linkedin,
 } from 'lucide-react';
 import {
   SiJavascript,
@@ -54,6 +56,19 @@ import Particles from '@/components/Particles';
 import Image from 'next/image';
 import { useState } from 'react';
 import { Check, Copy } from 'lucide-react';
+
+const SKILL_CATEGORY_LABELS: Record<string, string> = {
+  programmingLanguages: 'Programming Languages',
+  frameworksAndLibraries: 'Frameworks & Libraries',
+  stateManagement: 'State Management',
+  markupAndStyling: 'Markup & Styling',
+  uiLibraries: 'UI Libraries',
+  versionControlAndTools: 'Version Control & Tooling',
+  testingAndQuality: 'Testing & Quality',
+  backendIntermediate: 'Backend (Intermediate)',
+  API: 'API Patterns',
+  languages: 'Languages',
+}
 
 const skills = {
   programmingLanguages: ['JavaScript (ES6+)', 'TypeScript'],
@@ -190,7 +205,7 @@ export function AboutContent() {
         <FadeIn>
           <div className="space-y-4 mb-12">
             <Badge variant="secondary">
-              <Code2 className="h-3 w-3 mr-1" />
+              <User className="h-3 w-3 mr-1" />
               About Me
             </Badge>
             <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-12">
@@ -237,6 +252,17 @@ export function AboutContent() {
                     >
                       <Github className="h-3.5 w-3.5" />
                       github.com/tommynguyen2k
+                    </Link>
+                  </Badge>
+                  <Badge variant="outline" asChild>
+                    <Link
+                      href="https://www.linkedin.com/in/tommynguyen2k"
+                      target="_blank"
+                      rel="noreferrer"
+                      className="gap-2 inline-flex items-center"
+                    >
+                      <Linkedin className="h-3.5 w-3.5" />
+                      linkedin.com/in/tommynguyen2k
                     </Link>
                   </Badge>
                 </div>
@@ -302,8 +328,8 @@ export function AboutContent() {
               <FadeInOnScroll key={category}>
                 <Card className="h-full hover:border-primary/50 transition-all duration-300 hover:shadow-md group/skill">
                   <CardHeader className="pb-3">
-                    <CardTitle className="text-base capitalize flex items-center justify-between">
-                      {category.replace(/([A-Z])/g, ' $1').trim()}
+                    <CardTitle className="text-base flex items-center justify-between">
+                      {SKILL_CATEGORY_LABELS[category] ?? category}
                       <Code2 className="h-4 w-4 opacity-0 group-hover/skill:opacity-100 transition-opacity text-primary" />
                     </CardTitle>
                   </CardHeader>

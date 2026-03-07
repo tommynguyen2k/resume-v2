@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Mail, Github, Linkedin, Twitter } from 'lucide-react';
+import { Mail, Github, Linkedin } from 'lucide-react';
 
 export const Footer = () => {
   return (
@@ -21,6 +21,15 @@ export const Footer = () => {
             aria-label="GitHub"
           >
             <Github className="h-5 w-5" />
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/tommynguyen2k"
+            target="_blank"
+            rel="noreferrer"
+            className="p-2 rounded-full border bg-background hover:bg-secondary hover:text-primary transition-all shadow-sm"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="h-5 w-5" />
           </Link>
           <Link
             href="/contact"

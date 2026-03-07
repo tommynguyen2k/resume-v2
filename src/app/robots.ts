@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: 'https://sr-fe-portfolio.vercel.app/sitemap.xml',
+    sitemap: 'https://truongnguyen.cv/sitemap.xml',
   };
 }

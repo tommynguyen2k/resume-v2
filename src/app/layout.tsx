@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://sr-fe-portfolio.vercel.app'),
+  metadataBase: new URL('https://truongnguyen.cv'),
   title: {
     default: 'Tommy Nguyen | Senior Frontend Engineer Portfolio',
     template: '%s | Tommy Nguyen',
@@ -42,27 +42,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://sr-fe-portfolio.vercel.app',
+    url: 'https://truongnguyen.cv',
     title: 'Tommy Nguyen | Senior Frontend Engineer Portfolio',
     description:
       'Explore interactive frontend demos and learning resources from a Senior Engineer experienced in React, Next.js, and more.',
     siteName: 'Tommy Nguyen Portfolio',
-    images: [
-      {
-        url: '/og-image.png', // Assuming we might add one later or point to a default
-        width: 1200,
-        height: 630,
-        alt: 'Tommy Nguyen Portfolio',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Tommy Nguyen | Senior Frontend Engineer Portfolio',
     description:
       'Senior Frontend Engineer portfolio featuring interactive demos and modern web patterns.',
-    creator: '@tommynguyen', // Placeholder or real if known
-    images: ['/og-image.png'],
   },
   icons: {
     icon: '/tommyLogo.svg',

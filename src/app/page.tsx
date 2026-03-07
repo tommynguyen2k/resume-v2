@@ -160,7 +160,7 @@ export default function HomePage() {
           <FadeInOnScroll>
             <div className="text-center mb-8">
               <h2 className="text-2xl font-bold">Tech Stack</h2>
-              <p className="text-muted-foreground mt-2">Technologies used in this portfolio</p>
+              <p className="text-muted-foreground mt-2">Technologies I work with professionally</p>
             </div>
           </FadeInOnScroll>
           <StaggerContainer
